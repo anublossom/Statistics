@@ -1,31 +1,33 @@
 # Statistics → Correlation → Regression
 
 
-## 1️⃣ Problem Statement (Exact Example)
+## 1) Problem Statement (Exact Example)
 
- I go to a shop every day and buy a bun.
+I go to a shop every day and buy a bun.
 
- Nominal values:
+Nominal values:
 
 * Price = ₹5
 * Weight = 10 grams
 
- Because the shopkeeper is my friend, the **price varies**:
+Because the shopkeeper is my friend, the **price varies**:
 
-`4.6, 4.7, 4.8, 4.9, 4.55, 4.66, 4.76, 4.88, 5.2, 5.3`
+```
+4.6, 4.7, 4.8, 4.9, 4.55, 4.66, 4.76, 4.88, 5.2, 5.3
+```
 
 The **bun weight also varies**:
 
-`9.98, 9.5, 9.6, 9.7, 9.8, 9.98, 10.3, 10.22, 10.13, 10.34`
+```
+9.98, 9.5, 9.6, 9.7, 9.8, 9.98, 10.3, 10.22, 10.13, 10.34
+```
 
 ---
 
-## 2️⃣ Define Variables and Paired Data
+## 2) Variables and Paired Data
 
-Let:
-
-* **x = price (₹)**
-* **y = weight (grams)**
+* x = price (₹)
+* y = weight (grams)
 
 | Day | x    | y     |
 | --- | ---- | ----- |
@@ -40,114 +42,214 @@ Let:
 | 9   | 5.20 | 10.13 |
 | 10  | 5.30 | 10.34 |
 
-Number of observations: **n = 10**
+Number of observations: n = 10
 
 ---
 
-## 3️⃣ Mean (Average)
+## 3) Mean (Average)
 
-### Mean of x
+Mean formula:
 
-[ \bar{x} = \frac{\sum x}{n} = \frac{48.35}{10} = 4.835 ]
+```
+mean = (sum of values) / n
+```
 
-### Mean of y
+Mean of x:
 
-[ \bar{y} = \frac{\sum y}{n} = \frac{99.55}{10} = 9.955 ]
+```
+mean_x = 48.35 / 10 = 4.835
+```
 
----
+Mean of y:
 
-## 4️⃣ Standard Deviation (Complete Calculation)
-
-### 4.1 Deviation from Mean
-
-| x    | x−x̄   | (x−x̄)² | y     | y−ȳ    | (y−ȳ)² |
-| ---- | ------ | ------- | ----- | ------ | ------ |
-| 4.60 | −0.235 | 0.055   | 9.98  | 0.025  | 0.001  |
-| 4.70 | −0.135 | 0.018   | 9.50  | −0.455 | 0.207  |
-| 4.80 | −0.035 | 0.001   | 9.60  | −0.355 | 0.126  |
-| 4.90 | 0.065  | 0.004   | 9.70  | −0.255 | 0.065  |
-| 4.55 | −0.285 | 0.081   | 9.80  | −0.155 | 0.024  |
-| 4.66 | −0.175 | 0.031   | 9.98  | 0.025  | 0.001  |
-| 4.76 | −0.075 | 0.006   | 10.30 | 0.345  | 0.119  |
-| 4.88 | 0.045  | 0.002   | 10.22 | 0.265  | 0.070  |
-| 5.20 | 0.365  | 0.133   | 10.13 | 0.175  | 0.031  |
-| 5.30 | 0.465  | 0.216   | 10.34 | 0.385  | 0.148  |
+```
+mean_y = 99.55 / 10 = 9.955
+```
 
 ---
 
-### 4.2 Variance and SD
+## 4) Standard Deviation (All Steps)
 
-[ \text{Variance}_x = \frac{0.547}{9} = 0.061 ]
-[ SD_x = \sqrt{0.061} \approx 0.25 ]
+### Step 1: Deviation from Mean and Squaring
 
-[ \text{Variance}_y = \frac{0.792}{9} = 0.088 ]
-[ SD_y = \sqrt{0.088} \approx 0.30 ]
-
----
-
-## 5️⃣ Correlation (Full Calculation)
-
-### 5.1 Product of Deviations
-
-[ (x_i-x̄)(y_i-ȳ) ]
-
-Sum:
-[ \sum (x_i-x̄)(y_i-ȳ) = 0.43 ]
+| x    | x-mean_x | (x-mean_x)^2 | y     | y-mean_y | (y-mean_y)^2 |
+| ---- | -------- | ------------ | ----- | -------- | ------------ |
+| 4.60 | -0.235   | 0.055        | 9.98  | 0.025    | 0.001        |
+| 4.70 | -0.135   | 0.018        | 9.50  | -0.455   | 0.207        |
+| 4.80 | -0.035   | 0.001        | 9.60  | -0.355   | 0.126        |
+| 4.90 | 0.065    | 0.004        | 9.70  | -0.255   | 0.065        |
+| 4.55 | -0.285   | 0.081        | 9.80  | -0.155   | 0.024        |
+| 4.66 | -0.175   | 0.031        | 9.98  | 0.025    | 0.001        |
+| 4.76 | -0.075   | 0.006        | 10.30 | 0.345    | 0.119        |
+| 4.88 | 0.045    | 0.002        | 10.22 | 0.265    | 0.070        |
+| 5.20 | 0.365    | 0.133        | 10.13 | 0.175    | 0.031        |
+| 5.30 | 0.465    | 0.216        | 10.34 | 0.385    | 0.148        |
 
 ---
 
-### 5.2 Correlation Formula
+### Step 2: Variance
 
-[ r = \frac{\sum (x_i-x̄)(y_i-ȳ)}{\sqrt{\sum (x_i-x̄)^2 \sum (y_i-ȳ)^2}} ]
+Sample variance formula:
 
-[ r = \frac{0.43}{\sqrt{0.547 \times 0.792}} \approx 0.49 ]
+```
+variance = sum((value - mean)^2) / (n - 1)
+```
 
----
+Variance of x:
 
-## 6️⃣ Regression (y = a + bx)
+```
+variance_x = 0.547 / 9 = 0.061
+```
 
-### 6.1 Slope
+Variance of y:
 
-[ b = \frac{\sum (x_i-x̄)(y_i-ȳ)}{\sum (x_i-x̄)^2} = \frac{0.43}{0.547} \approx 0.58 ]
-
-### 6.2 Intercept
-
-[ a = ȳ - b x̄ = 9.955 - (0.58)(4.835) = 7.13 ]
-
-### Regression Equation
-
-[ \boxed{y = 7.13 + 0.58x} ]
+```
+variance_y = 0.792 / 9 = 0.088
+```
 
 ---
 
-## 7️⃣ Probability of Deviation (z‑score)
+### Step 3: Standard Deviation
 
-### Example: Paying ₹5.30
+```
+SD = sqrt(variance)
+```
 
-[ z_x = \frac{5.30 - 4.835}{0.25} = 1.86 ]
-
-### Example: Weight 10.34 g
-
-[ z_y = \frac{10.34 - 9.955}{0.30} = 1.28 ]
+```
+SD_x = sqrt(0.061) ≈ 0.25
+SD_y = sqrt(0.088) ≈ 0.30
+```
 
 Interpretation:
 
-* Values within ±2 SD are **normal variation**
+* Typical price variation ≈ ±₹0.25
+* Typical weight variation ≈ ±0.30 g
 
 ---
 
-## 8️⃣ p‑Value (Significance of Correlation)
+## 5) Correlation (r) — Full Calculation
 
-[ t = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}} ]
+Correlation formula (plain text):
 
-[ t = \frac{0.49\sqrt{8}}{\sqrt{1-0.49^2}} \approx 1.56 ]
+```
+r = sum[(x-mean_x)(y-mean_y)] / sqrt( sum(x-mean_x)^2 * sum(y-mean_y)^2 )
+```
+
+Compute numerator:
+
+```
+sum[(x-mean_x)(y-mean_y)] = 0.43
+```
+
+Compute denominator:
+
+```
+sqrt(0.547 * 0.792) = 0.658
+```
+
+Correlation:
+
+```
+r = 0.43 / 0.658 ≈ 0.49
+```
+
+Interpretation:
+
+* r > 0 → positive relationship
+* r ≈ 0.5 → moderate strength
+
+---
+
+## 6) Regression (y = a + b x)
+
+Slope formula:
+
+```
+b = sum[(x-mean_x)(y-mean_y)] / sum(x-mean_x)^2
+```
+
+```
+b = 0.43 / 0.547 ≈ 0.58
+```
+
+Intercept formula:
+
+```
+a = mean_y - b * mean_x
+```
+
+```
+a = 9.955 - (0.58 * 4.835) ≈ 7.13
+```
+
+Regression equation:
+
+```
+y = 7.13 + 0.58 x
+```
+
+---
+
+## 7) Probability of Deviation (z-score)
+
+z-score formula:
+
+```
+z = (value - mean) / SD
+```
+
+Example: price = 5.30
+
+```
+z_x = (5.30 - 4.835) / 0.25 ≈ 1.86
+```
+
+Example: weight = 10.34
+
+```
+z_y = (10.34 - 9.955) / 0.30 ≈ 1.28
+```
+
+Values within ±2 SD are considered normal variation.
+
+---
+
+## 8) p-value (Significance of Correlation)
+
+Test statistic:
+
+```
+t = r * sqrt(n - 2) / sqrt(1 - r^2)
+```
+
+```
+t = 0.49 * sqrt(8) / sqrt(1 - 0.49^2) ≈ 1.56
+```
 
 Degrees of freedom:
-[ df = 8 ]
 
-From t‑distribution:
-[ p \approx 0.15 ]
+```
+df = n - 2 = 8
+```
+
+From t-table:
+
+```
+p ≈ 0.15
+```
+
+Interpretation:
+
+* Trend exists
+* Not statistically significant with small sample size
 
 ---
 
+## Final Meaning
+
+* Mean → typical value
+* SD → normal variation
+* Correlation → relationship strength
+* Regression → predictive model
+* p-value → reliability of the pattern
 
